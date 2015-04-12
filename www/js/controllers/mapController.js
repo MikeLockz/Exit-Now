@@ -18,7 +18,7 @@ angular.module('starter').controller('MapController',
       InstructionsService
       ) {
 
-      $http.get('http://exit-now.herokuapp.com/deals/currentDeals')
+      $http.get('http://exit-now.herokuapp.com/api/deals/current')
       .success(function(data, status, headers, config) {
         // this callback will be called asynchronously
         // when the response is available
@@ -52,7 +52,7 @@ angular.module('starter').controller('MapController',
 
         $scope.map = {
           defaults: {
-            tileLayer: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+            tileLayer: 'http://{s}.tiles.mapbox.com/v3/craftedhere.map-ra9dh20d/{z}/{x}/{y}.png',
             maxZoom: 18,
             zoomControlPosition: 'bottomleft'
           },
