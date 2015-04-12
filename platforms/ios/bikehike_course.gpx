@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+ 
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="bikehike.co.uk" version="1.1" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+
+  <metadata>
+    <time>2015-04-12T16:04:02Z</time>
+    <bounds minlat="39.640000" minlon="-106.372490" maxlat="39.641470" maxlon="-106.370880" /> 
+  </metadata>
+
+
+  
+  <rte>
+    <name>bikehike course</name>
+    <number>1</number>
+    <rtept lat="39.640290" lon="-106.372490">
+      <ele>2502.84</ele>
+      <time>2015-04-12T16:04:02Z</time>
+      <name>pt0</name>
+    </rtept>
+    <rtept lat="39.640160" lon="-106.372200">
+      <ele>2503.28</ele>
+      <time>2015-04-12T16:04:06Z</time>
+      <name>pt1</name>
+    </rtept>
+    <rtept lat="39.640070" lon="-106.372060">
+      <ele>2504.22</ele>
+      <time>2015-04-12T16:04:08Z</time>
+      <name>pt2</name>
+    </rtept>
+    <rtept lat="39.640060" lon="-106.372010">
+      <ele>2504.35</ele>
+      <time>2015-04-12T16:04:09Z</time>
+      <name>pt3</name>
+    </rtept>
+    <rtept lat="39.640020" lon="-106.371900">
+      <ele>2504.67</ele>
+      <time>2015-04-12T16:04:10Z</time>
+      <name>pt4</name>
+    </rtept>
+    <rtept lat="39.640000" lon="-106.371810">
+      <ele>2504.53</ele>
+      <time>2015-04-12T16:04:12Z</time>
+      <name>pt5</name>
+    </rtept>
+    <rtept lat="39.640020" lon="-106.371680">
+      <ele>2503.98</ele>
+      <time>2015-04-12T16:04:13Z</time>
+      <name>pt6</name>
+    </rtept>
+    <rtept lat="39.640120" lon="-106.371300">
+      <ele>2503.38</ele>
+      <time>2015-04-12T16:04:18Z</time>
+      <name>pt7</name>
+    </rtept>
+    <rtept lat="39.640240" lon="-106.370880">
+      <ele>2503</ele>
+      <time>2015-04-12T16:04:24Z</time>
+      <name>pt8</name>
+    </rtept>
+    <rtept lat="39.640580" lon="-106.370930">
+      <ele>2501.28</ele>
+      <time>2015-04-12T16:04:30Z</time>
+      <name>pt9</name>
+    </rtept>
+    <rtept lat="39.640730" lon="-106.370970">
+      <ele>2500.86</ele>
+      <time>2015-04-12T16:04:32Z</time>
+      <name>pt10</name>
+    </rtept>
+    <rtept lat="39.641160" lon="-106.371140">
+      <ele>2498.95</ele>
+      <time>2015-04-12T16:04:40Z</time>
+      <name>pt11</name>
+    </rtept>
+    <rtept lat="39.641470" lon="-106.371370">
+      <ele>2500.77</ele>
+      <time>2015-04-12T16:04:46Z</time>
+      <name>pt12</name>
+    </rtept>
+  </rte>
+</gpx>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.0" creator="GPS Visualizer Sandbox http://www.gpsvisualizer.com/draw/" xmlns="http://www.topografix.com/GPX/1/0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
+	<wpt lat="39.6053513" lon="-106.3217944">
+		<name>one</name>
+	</wpt>
+	<wpt lat="39.6052790" lon="-106.3217434">
+		<name>two</name>
+	</wpt>
+	<wpt lat="39.6052046" lon="-106.3217193">
+		<name>three</name>
+	</wpt>
+	<wpt lat="39.6043739" lon="-106.3214886">
+		<name>four</name>
+	</wpt>
+	<trk>
+		<name></name>
+		<desc>Length: 0.113 km (0.07 mi)</desc>
+		<trkseg>
+			<trkpt lat="39.6053513" lon="-106.3217944"></trkpt>
+			<trkpt lat="39.6052769" lon="-106.3217407"></trkpt>
+			<trkpt lat="39.6051922" lon="-106.3217166"></trkpt>
+			<trkpt lat="39.6050724" lon="-106.3216978"></trkpt>
+			<trkpt lat="39.6048926" lon="-106.3216791"></trkpt>
+			<trkpt lat="39.6047396" lon="-106.3216522"></trkpt>
+			<trkpt lat="39.6045971" lon="-106.3215905"></trkpt>
+			<trkpt lat="39.6043759" lon="-106.3214859"></trkpt>
+		</trkseg>
+	</trk>
+</gpx>
