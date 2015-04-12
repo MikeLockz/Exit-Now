@@ -6,8 +6,7 @@ angular.module('starter').factory('LocationsService', [ function() {
     {
       name : "Denver, CO",
       lat : 38.8951100,
-      lng : -77.0363700,
-      travelTimek: 
+      lng : -77.0363700
     },
     {
       name : "Idaho Springs, CO",
