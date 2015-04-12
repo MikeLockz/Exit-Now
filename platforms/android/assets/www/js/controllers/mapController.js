@@ -4,6 +4,7 @@ angular.module('starter').controller('MapController',
     '$stateParams',
     '$ionicModal',
     '$ionicPopup',
+    '$http',
     'LocationsService',
     'InstructionsService',
     function(
@@ -12,9 +13,51 @@ angular.module('starter').controller('MapController',
       $stateParams,
       $ionicModal,
       $ionicPopup,
+      $http,
       LocationsService,
       InstructionsService
       ) {
+
+      $scope.currentLocationParams = {
+        'traffic':'1',
+        'distance':'3',
+        'roadConditions':'11'
+      }
+
+      $http.get('http://exit-now.herokuapp.com/api/deals/current')
+      .success(function(data, status, headers, config) {
+        // this callback will be called asynchronously
+        // when the response is available
+        //var matchingDeals = _.filter(data, {'traffic', '1'});
+        // var matchingDeals = _.forEach(function(x) {
+        //   console.log(_.filter(x.dealData.triggers, {'traffic': '1'}));
+        // });
+
+        console.log(data);
+        var matchingDeals = _.filter(data, function(deal) {
+          var match = deal.dealData.triggers.traffic == $scope.currentLocationParams.traffic && deal.dealData.triggers.distance == $scope.currentLocationParams.distance && deal.dealData.triggers.roadConditions == $scope.currentLocationParams.roadConditions;
+          if (match) {
+            $scope.addDealToMap(deal);  
+          }
+            
+          return deal;
+        });        
+      })
+      .error(function(data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        console.log(data);
+      });
+
+      $scope.addDealToMap = function(deal) {
+        $scope.map.markers.all = {
+          lat:deal.dealData.lat,
+          lng:deal.dealData.lon,
+          message: deal.dealData.name,
+          focus: true,
+          draggable: false
+        };
+      };
 
       /**
        * Once state loaded, get put map on scope.
@@ -24,21 +67,21 @@ angular.module('starter').controller('MapController',
         $scope.locations = LocationsService.savedLocations;
         $scope.newLocation;
 
-        if(!InstructionsService.instructions.newLocations.seen) {
+        // if(!InstructionsService.instructions.newLocations.seen) {
 
-          var instructionsPopup = $ionicPopup.alert({
-            title: 'Add Locations',
-            template: InstructionsService.instructions.newLocations.text
-          });
-          instructionsPopup.then(function(res) {
-            InstructionsService.instructions.newLocations.seen = true;
-            });
+        //   var instructionsPopup = $ionicPopup.alert({
+        //     title: 'Add Locations',
+        //     template: InstructionsService.instructions.newLocations.text
+        //   });
+        //   instructionsPopup.then(function(res) {
+        //     InstructionsService.instructions.newLocations.seen = true;
+        //     });
 
-        }
+        // }
 
         $scope.map = {
           defaults: {
-            tileLayer: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+            tileLayer: 'http://{s}.tiles.mapbox.com/v3/craftedhere.map-ra9dh20d/{z}/{x}/{y}.png',
             maxZoom: 18,
             zoomControlPosition: 'bottomleft'
           },
@@ -99,13 +142,13 @@ angular.module('starter').controller('MapController',
           zoom : 12
         };
 
-        $scope.map.markers[locationKey] = {
-          lat:location.lat,
-          lng:location.lng,
-          message: location.name,
-          focus: true,
-          draggable: false
-        };
+        // $scope.map.markers[locationKey] = {
+        //   lat:location.lat,
+        //   lng:location.lng,
+        //   message: location.name,
+        //   focus: true,
+        //   draggable: false
+        // };
 
       };
 

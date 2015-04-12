@@ -2,6 +2,11 @@
   "name": "exit-here-mobile",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-rc.2"
+    "ionic": "driftyco/ionic-bower#1.0.0-rc.2",
+    "lodash": "~2.4.1",
+    "angular-leaflet-directive": "tombatossals/angular-leaflet-directive"
+  },
+  "dependencies": {
+    "ng-lodash": "~0.2.0"
   }
 }
