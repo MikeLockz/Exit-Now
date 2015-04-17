@@ -33,7 +33,7 @@ angular.module('starter').controller('MapController',
           deal.alertVisible = true;
           var alertPopup = $ionicPopup.alert({
             title: deal.message,
-            template: 'Exit now! There is a ' + deal.message + ' at ' + deal.business + ". Traffic will be good for the next few miles."
+            template: 'Exit now! There is a ' + deal.message + ". Traffic will be good for the next few miles."
           });
           alertPopup.then(function(res) {
             // user acknowledged coupon
