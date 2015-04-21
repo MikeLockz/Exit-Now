@@ -169,7 +169,16 @@ angular.module('starter').controller('MapController',
               logic: 'emit'
             }
           },
-          allMarkers: {}
+          allMarkers: {},
+          layers: {
+            baselayers: {
+                mapbox_light: {
+                    name: 'ExitNowBase',
+                    url: 'http://api.tiles.mapbox.com/v4/mikelockz.lpk1nf8l/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWlrZWxvY2t6IiwiYSI6IldWdXVFVWcifQ.x4XEU5uIc92VLBNNzQMvNg',
+                    type: 'xyz'
+                }
+            }
+          }
         };
 
         $scope.goTo(0);
