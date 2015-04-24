@@ -10,6 +10,9 @@ angular.module('starter').controller('MapController',
       }
 
       $scope.validDeals = [];
+      $scope.enableGeolocation = true;
+      $scope.enableAnimation = true;
+      $scope.enableLoop = true;
 
       $scope.distanceCodeToMeters = function(distanceCode) {
         switch (distanceCode) {
@@ -154,7 +157,7 @@ angular.module('starter').controller('MapController',
         //     });
 
         // }
-
+        $scope.opacity = .5;
         $scope.map = {
           defaults: {
             tileLayer: 'http://{s}.tiles.mapbox.com/v3/craftedhere.map-ra9dh20d/{z}/{x}/{y}.png',
@@ -169,7 +172,36 @@ angular.module('starter').controller('MapController',
               logic: 'emit'
             }
           },
-          allMarkers: {}
+          allMarkers: {},
+          layers: {
+            baselayers: {
+                mapbox_light: {
+                    name: 'ExitNowBase',
+                    url: 'http://api.tiles.mapbox.com/v4/mikelockz.lpk1nf8l/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWlrZWxvY2t6IiwiYSI6IldWdXVFVWcifQ.x4XEU5uIc92VLBNNzQMvNg',
+                    type: 'xyz'
+                }
+                // ,
+                // googleRoadmap: {
+                //     name: 'Google Streets',
+                //     layerType: 'ROADMAP',
+                //     type: 'google'
+                // }
+            },
+            overlays: {
+              aeris_weather: {
+                  name: 'AerisWeather',
+                  url: 'http://tile2.aerisapi.com/oUZzEQm9jQnwqCGdBdNWm_1aCDQZwcqAu6ooUkRFP38TO5VFr32jmSwRef2ByS/radsat/{z}/{x}/{y}/0.png',
+                  type: 'xyz',
+                  visible: true,
+                  layerParams: {
+                      layers: 'usa:states',
+                      format: 'image/png',
+                      transparent: true,
+                      opacity: $scope.opacity
+                  }
+              }
+            }
+          }
         };
 
         $scope.goTo(0);
@@ -217,7 +249,7 @@ angular.module('starter').controller('MapController',
         $scope.map.center  = {
           lat : location.lat,
           lng : location.lng,
-          zoom : 12
+          zoom : 7
         };
 
         // $scope.map.markers[locationKey] = {
@@ -241,7 +273,7 @@ angular.module('starter').controller('MapController',
             console.log(position);
             $scope.map.center.lat  = position.coords.latitude;
             $scope.map.center.lng = position.coords.longitude;
-            $scope.map.center.zoom = 15;
+            // $scope.map.center.zoom = 7;
 
             $scope.map.markers.now = {
               lat:position.coords.latitude,
@@ -284,10 +316,77 @@ angular.module('starter').controller('MapController',
       // };
       // $scope.watchLocation();
 
+      
+      $scope.stall = function() {
 
-      $interval($scope.locate, 1000);
+      };
 
 
+      $scope.enableGeolocation2 = function(value) {
+        $scope.enableGeolocation = value;    
+      };
+      
+
+      $scope.updateMap = function() {
+        if ($scope.enableGeolocation) {
+          $scope.locate();
+        } else {
+          $scope.stall();
+        }
+      };
+
+
+      $scope.$on('leafletDirectiveMap.drag', function(event){
+        $scope.enableGeolocation = false;
+      });
       
       
-    }]);
+
+    
+
+      $scope.playAnimation = function() {
+        $scope.enableAnimation = true;
+        $interval($scope.incrementAnimation, 100);
+      };
+      $scope.stopAnimation = function() {
+        $scope.enableAnimation = false;
+      }
+
+      $scope.incrementAnimation = function() {
+        if ($scope.data.scrubbarPosition < 100 && $scope.enableAnimation) {
+          $scope.data.scrubbarPosition = (parseInt($scope.data.scrubbarPosition)+ 1).toString();
+          console.log($scope.data.scrubbarPosition);
+          if (parseInt($scope.data.scrubbarPosition) == 100 && $scope.enableLoop == true) {
+            $scope.loopAnimation();
+          }
+        }
+
+        
+      }
+      $scope.loopAnimation = function() {
+        $scope.data.scrubbarPosition = '0';
+      };
+      
+
+      $scope.data = { 'scrubbarPosition' : '0' };
+    
+      var timeoutId = null;
+      $scope.$watch('data.scrubbarPosition', function() {
+          if(timeoutId !== null) {
+              return;
+          }
+          
+          timeoutId = $timeout( function() {
+              $timeout.cancel(timeoutId);
+              timeoutId = null;
+          }, 1000); 
+      });
+
+
+
+
+
+      $interval($scope.updateMap, 1000);
+    }
+  ]
+);

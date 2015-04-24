@@ -5,12 +5,21 @@
   </ion-nav-buttons>
 
   <ion-nav-buttons side="right">
-    <button ng-click="locate();" class="button button-icon icon ion-pinpoint"></button>
+    <button ng-click="enableGeolocation2(true)" class="button button-icon icon ion-pinpoint"></button>
   </ion-nav-buttons>
 
   <ion-content data-tap-disabled="true">
 
-    <leaflet defaults="map.defaults" center="map.center" markers="map.markers"  paths="map.paths" ng-if="map"></leaflet>
+    <leaflet defaults="map.defaults" center="map.center" markers="map.markers"  paths="map.paths" layers="map.layers" ng-if="map"></leaflet>
+
+	
+	<div class="item range animation-controls">
+		<i class="icon ion-stop" ng-click="stopAnimation()"></i>
+		<input type="range" name="volume" ng-model="data.scrubbarPosition">
+		<i class="icon ion-play" ng-click="playAnimation()"></i>
+		<p>Time : {{data.scrubbarPosition}}</p>
+	</div>
+	
 
   </ion-content>
 
