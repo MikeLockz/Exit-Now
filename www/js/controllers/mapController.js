@@ -10,6 +10,7 @@ angular.module('starter').controller('MapController',
       }
 
       $scope.validDeals = [];
+      $scope.enableGeolocation = true;
 
       $scope.distanceCodeToMeters = function(distanceCode) {
         switch (distanceCode) {
@@ -154,7 +155,7 @@ angular.module('starter').controller('MapController',
         //     });
 
         // }
-
+        $scope.opacity = .5;
         $scope.map = {
           defaults: {
             tileLayer: 'http://{s}.tiles.mapbox.com/v3/craftedhere.map-ra9dh20d/{z}/{x}/{y}.png',
@@ -177,6 +178,26 @@ angular.module('starter').controller('MapController',
                     url: 'http://api.tiles.mapbox.com/v4/mikelockz.lpk1nf8l/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWlrZWxvY2t6IiwiYSI6IldWdXVFVWcifQ.x4XEU5uIc92VLBNNzQMvNg',
                     type: 'xyz'
                 }
+                // ,
+                // googleRoadmap: {
+                //     name: 'Google Streets',
+                //     layerType: 'ROADMAP',
+                //     type: 'google'
+                // }
+            },
+            overlays: {
+              aeris_weather: {
+                  name: 'AerisWeather',
+                  url: 'http://tile2.aerisapi.com/oUZzEQm9jQnwqCGdBdNWm_1aCDQZwcqAu6ooUkRFP38TO5VFr32jmSwRef2ByS/radsat/{z}/{x}/{y}/0.png',
+                  type: 'xyz',
+                  visible: true,
+                  layerParams: {
+                      layers: 'usa:states',
+                      format: 'image/png',
+                      transparent: true,
+                      opacity: $scope.opacity
+                  }
+              }
             }
           }
         };
@@ -226,7 +247,7 @@ angular.module('starter').controller('MapController',
         $scope.map.center  = {
           lat : location.lat,
           lng : location.lng,
-          zoom : 12
+          zoom : 7
         };
 
         // $scope.map.markers[locationKey] = {
@@ -250,7 +271,7 @@ angular.module('starter').controller('MapController',
             console.log(position);
             $scope.map.center.lat  = position.coords.latitude;
             $scope.map.center.lng = position.coords.longitude;
-            $scope.map.center.zoom = 15;
+            // $scope.map.center.zoom = 7;
 
             $scope.map.markers.now = {
               lat:position.coords.latitude,
@@ -293,10 +314,32 @@ angular.module('starter').controller('MapController',
       // };
       // $scope.watchLocation();
 
-
-      $interval($scope.locate, 1000);
-
-
       
+      $scope.stall = function() {
+
+      };
+
+
+      $scope.enableGeolocation2 = function(value) {
+        $scope.enableGeolocation = value;    
+      };
       
-    }]);
+
+      $scope.updateMap = function() {
+        if ($scope.enableGeolocation) {
+          $scope.locate();
+        } else {
+          $scope.stall();
+        }
+      };
+
+
+      $scope.$on('leafletDirectiveMap.drag', function(event){
+        $scope.enableGeolocation = false;
+      });
+      
+      $interval($scope.updateMap, 1000);
+
+    }
+  ]
+);

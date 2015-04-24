@@ -4,7 +4,8 @@
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#1.0.0-rc.2",
     "lodash": "~2.4.1",
-    "angular-leaflet-directive": "tombatossals/angular-leaflet-directive"
+    "angular-leaflet-directive": "tombatossals/angular-leaflet-directive",
+    "aerisjs": "~0.7.19"
   },
   "dependencies": {
     "ng-lodash": "~0.2.0"
