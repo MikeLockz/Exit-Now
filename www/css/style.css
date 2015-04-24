@@ -18,3 +18,11 @@ body {
 .tabs.border-top {
   border-top: 1px solid #ddd !important;
 }
+.animation-controls {
+	position:absolute;
+	bottom:6em;
+	z-index: 99;
+	width:80%;
+	left:10%;
+	right:10%;
+}

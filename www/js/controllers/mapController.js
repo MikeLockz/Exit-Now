@@ -11,6 +11,8 @@ angular.module('starter').controller('MapController',
 
       $scope.validDeals = [];
       $scope.enableGeolocation = true;
+      $scope.enableAnimation = true;
+      $scope.enableLoop = true;
 
       $scope.distanceCodeToMeters = function(distanceCode) {
         switch (distanceCode) {
@@ -338,8 +340,53 @@ angular.module('starter').controller('MapController',
         $scope.enableGeolocation = false;
       });
       
-      $interval($scope.updateMap, 1000);
+      
 
+    
+
+      $scope.playAnimation = function() {
+        $scope.enableAnimation = true;
+        $interval($scope.incrementAnimation, 100);
+      };
+      $scope.stopAnimation = function() {
+        $scope.enableAnimation = false;
+      }
+
+      $scope.incrementAnimation = function() {
+        if ($scope.data.scrubbarPosition < 100 && $scope.enableAnimation) {
+          $scope.data.scrubbarPosition = (parseInt($scope.data.scrubbarPosition)+ 1).toString();
+          console.log($scope.data.scrubbarPosition);
+          if (parseInt($scope.data.scrubbarPosition) == 100 && $scope.enableLoop == true) {
+            $scope.loopAnimation();
+          }
+        }
+
+        
+      }
+      $scope.loopAnimation = function() {
+        $scope.data.scrubbarPosition = '0';
+      };
+      
+
+      $scope.data = { 'scrubbarPosition' : '0' };
+    
+      var timeoutId = null;
+      $scope.$watch('data.scrubbarPosition', function() {
+          if(timeoutId !== null) {
+              return;
+          }
+          
+          timeoutId = $timeout( function() {
+              $timeout.cancel(timeoutId);
+              timeoutId = null;
+          }, 1000); 
+      });
+
+
+
+
+
+      $interval($scope.updateMap, 1000);
     }
   ]
 );
